@@ -267,7 +267,7 @@ def pdf_generator(request):
 		fine = str(0)
 	str1 = str(obj_request.requestedBy) + " have returned book named " + str(obj_request.name) + " on " + str(date.today()) + " with fine of "+ fine + " Rupees"
 	p = canvas.Canvas(response)
-	p.drawString(100, 800, str1)
+	p.drawString(100, 800, str1) #PDF generator
 	p.showPage()
 	p.save()
 	return response
