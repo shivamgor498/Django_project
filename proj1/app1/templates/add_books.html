@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <title>
+    add_books
+  </title>
+</html>
+<head>
+  <body>
+    {% if message %}
+      {{message}}
+      {% endif %}
+    <form action = "/add_books/" method="post">
+      Name : <input type = "text" name = "Name">
+      <br><br>
+      Author : <input type = "text" name = "Author">
+      <br><br>
+      no_of_copies : <input type = "number" name = "no_of_copies" min = "1" max = "1000">
+      <br><br>
+      subject : <input type = "text" name = "subject">
+      <br><br>
+      summary : <input type="text" name="summary">
+      <br><br>
+      <input type = "Submit" name = "click">
+    </form>
+  </body>
+</head>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <title>
+    login
+  </title>
+</html>
+<head>
+  <body>
+    {% if message %}
+    {{message}}
+    {% endif %}
+    <form action = "/login/" method="post">
+      Username : <input type = "text" name = "Username">
+      <br><br>
+      Password : <input type = "password" name = "Password">
+      <br><br>
+      <input type = "Submit" name = "click">
+    </form>
+  </body>
+</head>
+</html>
