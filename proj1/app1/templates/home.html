@@ -3,14 +3,89 @@
   <title>
     home
   </title>
-</html>
 <head>
-  <body>
-    Library
-    <br><br>
-    <a href="/login">Login</a>
-    <br><br>
-    <a href="/register">Register</a>
-  </body>
+  <style>
+    html{
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      background-image: url("https://images.pexels.com/photos/926680/books-book-shopping-old-books-926680.jpeg?auto=compress&cs=tinysrgb&h=650&w=940");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      height: 100%;
+      margin: 0;
+    }
+    .head{
+      margin-top: 10px;
+    }
+    .footer{
+      position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: lightblue;
+   color: white;
+   text-align: center;
+    }
+  </style>
 </head>
+<link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link href="/static/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+ <link href="/static/dist/css/sb-admin-2.css" rel="stylesheet">
+ <link href="/static/vendor/morrisjs/morris.css" rel="stylesheet">
+ <link href="/static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+                <a class="navbar-brand" href="/home">Library</a>
+            </div>
+            <ul class="nav navbar-top-links navbar-right">
+            <a href="/login"><button class="head">Login</button></a>
+            <a href="/register"><button class="head">Register</button></a>
+          </ul>
+          </nav>
+        </div>
+        <div class="footer">
+          <a class="btn btn-social-icon btn-twitter" style="font-size:40px">
+            <span class="fa fa-twitter"></span>
+          </a>
+          <a class="btn btn-social-icon btn-facebook" style="font-size:40px">
+            <span class="fa fa-facebook"></span>
+          </a>
+          <a class="btn btn-gplus" style="font-size:40px;color:red;">
+            <span class="fa fa-google-plus"></span>
+          </a>
+          <a class="btn btn-android" style="font-size:40px;color:green;">
+            <span class="fa fa-android"></span>
+          </a>
+          <a class="btn btn-apple" style="font-size:40px;color:black;">
+            <span class="fa fa-apple"></span>
+          </a>
+          <a class="btn btn-windows" style="font-size:40px;color:black;">
+            <span class="fa fa-windows"></span>
+          </a>
+        </div>
+
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+      <script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
+      <script src="/static/vendor/metisMenu/metisMenu.min.js"></script>
+      <script src="/static/vendor/raphael/raphael.min.js"></script>
+      <script src="/static/vendor/morrisjs/morris.min.js"></script>
+      <script src="/static/data/morris-data.js"></script>
+      <script src="/static/dist/js/sb-admin-2.js"></script>
+      <script src="/static/vendor/datatables/js/jquery.dataTables.min.js"></script>
+      <script src="/static/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+      <script src="/static/vendo/datatables-responsive/dataTables.responsive.js"></script>
+  </body>
 </html>

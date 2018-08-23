@@ -62,7 +62,7 @@ def login(request):
 				else:
 					response = HttpResponseRedirect('/student_dash')
 			else:
-				context['message'] = "Invalid Credentials"
+				context['message'] = "Invalid Credentials Please try again!!!"
 				response = render(request,"login.html",context)
 		else:
 			response = render(request,'login.html',{})
@@ -84,6 +84,9 @@ def stud_dash(request):
 			context['books'] = list(models.books.objects.all())
 			context['rbooks'] = list(models.requested.objects.filter(requestedBy = request.session['username']))
 			context['rbooks'].sort(key = sort_date)
+			if 'error' in request.session:
+				context['error'] = "You already have a book"
+				del request.session['error']
 			response = render(request,'mes.html',context)
 			return response
 	else:
@@ -115,7 +118,7 @@ def logout(request):
 	if 'username' in request.session:
 		del request.session['username']
 		del request.session['User_type']
-	return redirect('/login')
+	return redirect('/home')
 @csrf_exempt
 def book_details(request):
 	temp_id = request.GET['book_id']
@@ -210,13 +213,11 @@ def request_books(request):
 		if models.books.objects.filter(name = Name).exists():
 			obj_books = models.books.objects.get(name = Name)
 			if int(obj_books.no_of_copies) < 1:
-				context = {}
-				context['message'] = "Invalid Entry"
-				return render(request,'request_books.html',context)
+				request.session['error'] = "You already have a book"
+				return HttpResponseRedirect('/student_dash')
 			if models.requested.objects.filter(Q(requestedBy = request.session['username']),Q(status = 'Booked') | Q(status = 'To be Returned')).exists():
-				context = {}
-				context['message'] = "Invalid Entry"
-				return render(request,'request_books.html',context)
+				request.session['error'] = "You already have a book"
+				return HttpResponseRedirect('/student_dash')
 			models.books.objects.get(name = Name).delete()
 			obj_books.no_of_copies = str(int(obj_books.no_of_copies) - 1)
 			obj_new_book = models.books(
@@ -235,31 +236,24 @@ def request_books(request):
 			)
 			obj.save()
 			return HttpResponseRedirect('/student_dash')
-		else:
-			context = {}
-			context['message'] = "Invalid Entry"
-			return render(request,'request_books.html',context)
-	else:
-		context = {}
-		context['message'] = "Invalid Entry"
-		return render(request,'request_books.html',context)
 @csrf_exempt
 def currentBookings(request):
 	obj_request = models.requested.objects.get(id = request.GET['request_id'])
 	if(obj_request.status == "Booked"):
 		obj_request.status = "To be Returned"
 		obj_request.save(update_fields = ['status'])
+		return HttpResponseRedirect('/home')
 	else:
 		obj_request.status = "Returned"
 		obj_books = models.books.objects.get(name = obj_request.name)
 		obj_books.no_of_copies = str(int(obj_books.no_of_copies) + 1)
 		obj_books.save(update_fields = ['no_of_copies'])
 		obj_request.save(update_fields = ['status'])
-	return HttpResponseRedirect('/home')
+		return HttpResponseRedirect('/pdf/?request_id='+request.GET['request_id'])
 def pdf_generator(request):
 	obj_request = models.requested.objects.get(id = request.GET['request_id'])
 	response = HttpResponse(content_type='application/pdf')
-	response['Content-Disposition'] = 'attachment; filename="somefilename.pdf"'
+	response['Content-Disposition'] = 'attachment; filename="library_reciept.pdf"'
 	d0 = datetime.today().date() - obj_request.return_date
 	if(d0.days > 0):
 		fine = str(int(d0.days)*10)

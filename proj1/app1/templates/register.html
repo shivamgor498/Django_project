@@ -3,25 +3,92 @@
   <title>
     login
   </title>
-</html>
 <head>
+
+
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="/static/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+     <link href="/static/dist/css/sb-admin-2.css" rel="stylesheet">
+     <link href="/static/vendor/morrisjs/morris.css" rel="stylesheet">
+     <link href="/static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <style>
+    body{
+      background-color: lightgreen;
+    }
+    cd{
+      margin-left: 10px;
+    }
+    hr.style-three {
+height: 30px;
+border-style: solid;
+border-color: black;
+border-width: 1px 0 0 0;
+border-radius: 20px;
+}
+hr.style-three:before {
+display: block;
+content: "";
+height: 30px;
+margin-top: -31px;
+border-style: solid;
+border-color: black;
+border-width: 0 0 1px 0;
+border-radius: 20px;
+}
+  </style>
   <body>
     {% if message %}
-    {{message}}
+    <script type="text/javascript">
+        var message = '{{message}}'
+        alert(message);
+    </script>
     {% endif %}
-    <form action = "/register/" method="post">
-      Name : <input type = "text" name = "Name">
-      <br><br>
-      Username : <input type = "text" name = "Username">
-      <br><br>
-      Password : <input type = "password" name = "Password">
-      <br><br>
-      Contact : <input type = "text" name = "Contact">
-      <br><br>
-      User_type : <input type = "text" name = "Type">
-      <br><br>
-      <input type = "Submit" name = "click">
-    </form>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+            </button>
+            <a class="navbar-brand" href="/home">Library</a>
+        </div>
+      </nav>
+      <div class="row">
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-4" style="background-color:white;margin-top:100px;border-radius:8px;padding-top: 40px;padding-left:60px;">
+          <form action = "/register/" method="post">
+            Name : <input type = "text" name = "Name" style="margin-left:28px">
+            <br><br>
+            Username : <input type = "text" name = "Username">
+            <br><br>
+            Password : <input type = "password" name = "Password" style="margin-left:5px;">
+            <br><br>
+            Contact : <input type = "text" name = "Contact" style="margin-left:18px;">
+            <br><br>
+            User_type : <input type = "text" name = "Type" style="margin-left:3px;">
+            <br><br>
+            <input type = "Submit" name = "click" class="btn btn-danger" style="margin-left:80px;" value="Register">
+            <cd>or</cd>
+            <a href="/login" class="btn btn-warning" style="margin-left:10px;">Login</a>
+            <br><br>
+            <hr class="style-three">
+            <a class="btn btn-social-icon btn-twitter" style="font-size:40px;margin-left:80px;">
+              <span class="fa fa-twitter"></span>
+            </a><a class="btn btn-social-icon btn-facebook" style="font-size:40px">
+              <span class="fa fa-facebook"></span>
+            </a>
+            <a class="btn btn-gplus" style="font-size:40px;color:red;">
+              <span class="fa fa-google-plus"></span>
+            </a>
+          </form>
+        </div>
+        <div class="col-sm-4">
+        </div>
+      </div>
   </body>
 </head>
 </html>

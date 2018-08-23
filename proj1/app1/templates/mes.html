@@ -17,12 +17,10 @@
    <link href="/static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-  {% if message == "Your Booking is Full!!!" %}
+  {% if error %}
   <script type="text/javascript">
-  window.onload = function(){
-    alert(message);
-   }
- }
+  var message = '{{error}}'
+  alert(message);
  </script>
   {% endif %}
   <div id="wrapper">
@@ -140,7 +138,6 @@
                 <th>Status</th>
                 {% if message1 == "Librarian" %}
                 <th>Choice</th>
-                <th>Reciept</th>
                 {% endif %}
               </tr>
               </thead>
@@ -157,7 +154,6 @@
                  {% endif %}
                  {% if message1 == "Librarian" and i.status == "To be Returned" %}
                  <td><a href="/currentBookings/?request_id={{i.id}}">Return</a></td>
-                 <td><a href="/pdf/?request_id={{i.id}}">PDF</a></td>
                  {% endif %}
                </tr>
               	{% endfor %}
